@@ -29,9 +29,12 @@ void bubble_sort(int *array, size_t size)
 
 	for (count1 = size - 1; count1 != 0; count1--)
 	{
-		puts("caca  ");
-		for (count2 = 1; count2 < count1; count2++)
+		for (count2 = 0; count2 < count1; count2++)
+		{
 			if (array[count2] > array[count2 + 1])
+			{
 				swap(&array[count2], &array[count2 + 1]);
+			}
+		}
 	}
 }
