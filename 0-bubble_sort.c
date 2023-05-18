@@ -17,3 +17,16 @@ void bubble_sort(int *array, size_t size)
             if (array[count2] > array[count2 + 1])
                 swap (array[count2], array[count2 + 1]);
 }
+
+/**
+ * swap - swap 2 numbers
+ * 
+ * 
+*/
+void swap (int i, int j)
+{
+    int temp;
+    temp = i;
+    i = j;
+    j = temp;
+}
