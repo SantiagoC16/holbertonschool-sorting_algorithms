@@ -3,8 +3,10 @@
 
 /**
  * swap - swap 2 numbers
+ * @array: array
  * @i: int 1
  * @j: int 2
+ * @size: size
  */
 
 void swap(int *array, int i, int j, int size)
@@ -43,6 +45,7 @@ void quick_sort(int *array, size_t size)
  * @array: the array of ints
  * @low: low
  * @high: high
+ * @size: size
  */
 
 void quick_sort_rec(int *array, int low, int high, int size)
@@ -63,6 +66,7 @@ void quick_sort_rec(int *array, int low, int high, int size)
  * @array: the array of ints
  * @low: low
  * @high: high
+ * @size: size
  * Return: pivot
  */
 
