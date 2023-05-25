@@ -49,16 +49,18 @@ void quick_sort_rec(int *array, int low, int high)
 
 		pivot_index = lomuto(array, low, high);
 		quick_sort_rec(array, low, pivot_index - 1);
+		print_array(array, high + 1);
 		quick_sort_rec(array, pivot_index + 1, high);
+		print_array(array, high + 1);
 	}
 }
 
 /**
- * lomuto - a function that sorts an array of integers
- * in ascending order using the Quick sort algorithm
+ * lomuto - partition function
  * @array: the array of ints
  * @low: low
  * @high: high
+ * Return: pivot
  */
 
 int lomuto(int *array, int low, int high)
