@@ -43,6 +43,10 @@ void quick_sort(int *array, size_t size)
 
 void quick_sort_rec(int *array, int low, int high)
 {
+	if (low == high)
+	{
+		return;
+	}
 	if (low < high)
 	{
 		int pivot_index;
