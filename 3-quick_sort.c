@@ -2,6 +2,21 @@
 #include "sort.h"
 
 /**
+ * swap - swap 2 numbers
+ * @i: int 1
+ * @j: int 2
+ */
+
+void swap(int *i, int *j)
+{
+	int temp;
+
+	temp = *i;
+	*i = *j;
+	*j = temp;
+}
+
+/**
  * quick_sort - a function that sorts an array of integers
  * in ascending order using the Quick sort algorithm
  * @array: the array of ints
@@ -10,21 +25,56 @@
 
 void quick_sort(int *array, size_t size)
 {
-	size_t count1 = 0, count2 = 0;
-
 	if (array == NULL || size <= 1)
 	{
 		return;
 	}
-	for (count1 = size - 1; count1 != 0; count1--)
+
+	quick_sort_rec(array, 0, size - 1);
+}
+
+/**
+ * quick_sort_rec - a function that sorts an array of integers
+ * in ascending order using the Quick sort algorithm
+ * @array: the array of ints
+ * @low: low
+ * @high: high
+ */
+
+void quick_sort_rec(int *array, int low, int high)
+{
+	if (low < high)
 	{
-		for (count2 = 0; count2 < count1; count2++)
+		int pivot_index;
+
+		pivot_index = lomuto(array, low, high);
+		quick_sort_rec(array, low, pivot_index - 1);
+		quick_sort_rec(array, pivot_index + 1, high);
+	}
+}
+
+/**
+ * lomuto - a function that sorts an array of integers
+ * in ascending order using the Quick sort algorithm
+ * @array: the array of ints
+ * @low: low
+ * @high: high
+ */
+
+int lomuto(int *array, int low, int high)
+{
+	int pivot_value = array[high];
+	int l, comp;
+
+	l = low;
+	for (comp = low; comp < high ; comp++)
+	{
+		if (array[comp] <= pivot_value)
 		{
-			if (array[count2] > array[count2 + 1])
-			{
-				swap(&array[count2], &array[count2 + 1]);
-				print_array(array, size);
-			}
+			swap(&array[l], &array[comp]);
+			l++;
 		}
 	}
+	swap(&array[l], &array[high]);
+	return (l);
 }

@@ -29,5 +29,7 @@ void swap(int *i, int *j);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
+void quick_sort_rec(int *array, int low, int high);
+int lomuto(int *array, int low, int high);
 
 #endif
