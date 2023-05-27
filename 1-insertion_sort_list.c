@@ -8,13 +8,15 @@
 void insertion_sort_list(listint_t **list)
 {
 
-	listint_t *current = (*list)->next, *temp = current, *pretemp = current->prev;
+	listint_t *current = (*list)->next, *temp, *pretemp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
 	while (current != NULL)
 	{
+		temp = current;
+		pretemp = current->prev;
 
 		while (pretemp != NULL && pretemp->n > temp->n)
 		{
