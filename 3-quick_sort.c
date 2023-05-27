@@ -3,17 +3,23 @@
 
 /**
  * swap - swap 2 numbers
+ * @array: array
  * @i: int 1
  * @j: int 2
+ * @size: size
  */
 
-void swap(int *i, int *j)
+void swap(int *array, int i, int j, int size)
 {
-	int temp;
+	int temp = 0;
 
-	temp = *i;
-	*i = *j;
-	*j = temp;
+	if (array[i] != array[j])
+	{
+		temp = array[j];
+		array[j] = array[i];
+		array[i] = temp;
+		print_array(array, size);
+	}
 }
 
 /**
@@ -30,7 +36,7 @@ void quick_sort(int *array, size_t size)
 		return;
 	}
 
-	quick_sort_rec(array, 0, size - 1);
+	quick_sort_rec(array, 0, size - 1, size);
 }
 
 /**
@@ -39,20 +45,19 @@ void quick_sort(int *array, size_t size)
  * @array: the array of ints
  * @low: low
  * @high: high
+ * @size: size
  */
 
-void quick_sort_rec(int *array, int low, int high)
+void quick_sort_rec(int *array, int low, int high, int size)
 {
+	int pivot_index;
 
 	if (low < high)
 	{
-		int pivot_index;
 
-		pivot_index = lomuto(array, low, high);
-		quick_sort_rec(array, low, pivot_index - 1);
-		print_array(array, high + 1);
-		quick_sort_rec(array, pivot_index + 1, high);
-		print_array(array, high + 1);
+		pivot_index = lomuto(array, low, high, size);
+		quick_sort_rec(array, low, pivot_index - 1, size);
+		quick_sort_rec(array, pivot_index + 1, high, size);
 	}
 }
 
@@ -61,10 +66,11 @@ void quick_sort_rec(int *array, int low, int high)
  * @array: the array of ints
  * @low: low
  * @high: high
+ * @size: size
  * Return: pivot
  */
 
-int lomuto(int *array, int low, int high)
+int lomuto(int *array, int low, int high, int size)
 {
 	int pivot_value = array[high];
 	int l, comp;
@@ -74,10 +80,10 @@ int lomuto(int *array, int low, int high)
 	{
 		if (array[comp] <= pivot_value)
 		{
-			swap(&array[l], &array[comp]);
+			swap(array, comp, l, size);
 			l++;
 		}
 	}
-	swap(&array[l], &array[high]);
+	swap(array, comp, l, size);
 	return (l);
 }
